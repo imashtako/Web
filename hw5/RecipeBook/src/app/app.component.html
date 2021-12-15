@@ -1,0 +1,39 @@
+
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="setSideBarIsOpen(!sideBarIsOpen)">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Книга рецептов</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="openBasket()" >
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav
+      #sidenav
+    [(opened)]="sideBarIsOpen"
+    (opened)="setSideBarIsOpen(true)"
+    (closed)="setSideBarIsOpen(false)"
+>
+
+    <mat-action-list>
+      <button
+        *ngFor="let recipe of recipes"
+        mat-list-item
+        (click)="selectRecipe(recipe)"
+        >
+        {{recipe.title}}
+      </button>
+    </mat-action-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <app-recipe [recipe]="selectedRecipe"></app-recipe>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+

@@ -1,0 +1,22 @@
+<div mat-dialog-content>
+  <mat-action-list>
+    <div
+      *ngFor="let ingredient of storage.value"
+      mat-list-item
+    >
+      {{ingredient.name + ' ' + '.'.repeat(50 - ingredient.name.length)}}
+      <input
+        #box
+        matInput
+        type="number"
+        class="basket-input"
+        [value]="ingredient.count"
+        (change)="storage.setCountOfIngredient(ingredient.name, box.value)"
+      >
+      {{ingredient.unit}}
+    </div>
+  </mat-action-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="buy()" >Купить</button>
+</div>

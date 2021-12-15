@@ -1,0 +1,30 @@
+<div>
+  <div *ngIf="recipe !== null">
+    <div class="recipe-image-container">
+      <img src={{recipe.imageSrc}} class="recipe-image"/>
+      {{recipe.title}}
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <span class="recipe-ingredients-container">
+      <mat-action-list>
+        <div
+          *ngFor="let ingredient of recipe.ingredients"
+          mat-list-item
+        >
+          {{ingredient.name + ' ' + '.'.repeat(50 - ingredient.name.length) + ' ' + ingredient.count + ' ' + ingredient.unit}}
+        </div>
+      </mat-action-list>
+    </span>
+
+    <button mat-raised-button color="primary" class="recipe-add-button" (click)="addIngredientsToBasket()">Добавить ингредиенты в корзину</button>
+
+    <div>
+      <div *ngFor="let step of recipe.description.split('\n')" class="recipe-step">
+        <p>{{step}}</p>
+      </div>
+    </div>
+
+  </div>
+</div>
